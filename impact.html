@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Our results and investment opportunities: skills hub, device lab and accessible transport.">
+  <title>Impact &amp; investment · Pwani Inclusive</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- data-page tells the JavaScript which page this is -->
+<body data-page="impact">
+
+  <!-- Accessibility: keyboard users press Tab once to jump past the menu -->
+  <a class="skip" href="#app" data-i18n>Skip to content</a>
+  <noscript><p class="noscript">Please turn on JavaScript to use this site.</p></noscript>
+
+  <!-- ============ HEADER: logo, menu, accessibility tools (same on every page) ============ -->
+  <header>
+    <div class="bar">
+      <a class="logo" href="index.html"><span aria-hidden="true">♿</span> Pwani <b>Inclusive</b></a>
+
+      <nav id="nav" aria-label="Main" data-i18n-aria="Main">
+        <a href="index.html" data-i18n>Home</a>
+        <a href="about.html" data-i18n>About</a>
+        <a href="programs.html" data-i18n>Programs</a>
+        <a href="impact.html" class="on" aria-current="page" data-i18n>Impact</a>
+        <a href="blog.html" data-i18n>Blog</a>
+        <a href="volunteer.html" data-i18n>Volunteer</a>
+        <a href="donate.html" data-i18n>Donate</a>
+        <a href="contact.html" data-i18n>Contact</a>
+        <a href="admin.html" data-i18n>Admin</a>
+      </nav>
+
+      <!-- Each button names its job in data-action; app.js runs the matching function -->
+      <div class="tools" role="toolbar" aria-label="Accessibility tools" data-i18n-aria="Accessibility tools">
+        <button data-action="lang" aria-label="Switch language English Swahili" data-i18n-aria="Switch language English Swahili">SW</button>
+        <button id="btn-read" data-action="read"><span aria-hidden="true">🔊</span> <span data-i18n>Read</span></button>
+        <button data-action="voice" aria-pressed="false" data-i18n>Voice</button>
+        <button data-action="guide"><span aria-hidden="true">❓</span> <span data-i18n>Guide</span></button>
+        <button data-action="bigger" aria-label="Bigger text" data-i18n-aria="Bigger text">A+</button>
+        <button data-action="smaller" aria-label="Smaller text" data-i18n-aria="Smaller text">A−</button>
+        <button data-action="contrast" aria-label="High contrast" data-i18n-aria="High contrast">◐</button>
+        <button data-action="theme" aria-label="Dark mode" data-i18n-aria="Dark mode">☾</button>
+        <button id="menu" data-action="menu" aria-label="Menu" data-i18n-aria="Menu" aria-expanded="false" aria-controls="nav">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ MAIN: the part that changes on each page ============ -->
+  <main id="app" tabindex="-1">
+    <h1 data-i18n>Impact &amp; investment</h1>
+    <p class="lead" data-i18n>Every KES 1 invested returns an estimated KES 3.4 in earnings and savings (demo model).</p>
+
+    <section class="grid">
+      <div class="card"><div class="stat">1,240</div><div class="mut" data-i18n>members</div></div>
+      <div class="card"><div class="stat">78%</div><div class="mut" data-i18n>placed or self-employed</div></div>
+      <div class="card"><div class="stat">KES 18M</div><div class="mut" data-i18n>earned by members, 2025</div></div>
+    </section>
+
+    <!-- Bar chart made with plain HTML + CSS. Each bar's height is its value / 420 (the biggest). -->
+    <h2 data-i18n>Members reached per year</h2>
+    <div class="card">
+      <div class="bars" role="img" aria-label="Members per year: 2022 90, 2023 160, 2024 240, 2025 310, 2026 420">
+          <div style="height:21.4%"><span>90</span><em>2022</em></div>
+          <div style="height:38.1%"><span>160</span><em>2023</em></div>
+          <div style="height:57.1%"><span>240</span><em>2024</em></div>
+          <div style="height:73.8%"><span>310</span><em>2025</em></div>
+          <div style="height:100.0%"><span>420</span><em>2026</em></div>
+      </div>
+    </div>
+
+    <h2 data-i18n>Investment opportunities</h2>
+    <div class="card tw">
+      <table>
+        <thead><tr><th data-i18n>Initiative</th><th data-i18n>Ask</th><th data-i18n>Outcome</th></tr></thead>
+        <tbody>
+          <tr><td data-i18n>Inclusive Skills Hub, Nyali</td><td>KES 12M</td><td data-i18n>600 trained, 70% employed / year</td></tr>
+          <tr><td data-i18n>Assistive Device Lab</td><td>KES 8M</td><td data-i18n>1,500 devices repaired / year</td></tr>
+          <tr><td data-i18n>Accessible Transport Pilot</td><td>KES 15M</td><td data-i18n>4 adapted vans, 3,000 trips / month</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <section class="band">
+      <h2 data-i18n>Partner with us</h2>
+      <a class="btn" href="contact.html?about=Investor" data-i18n>Request investor pack</a>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER (same on every page) ============ -->
+  <footer>
+    <div class="in">
+      <div class="grid">
+        <div>
+          <h3>Pwani Inclusive</h3>
+          <p class="mut" data-i18n>Wellness, skills and opportunity for persons with disabilities in Mombasa. Demo site, sample data.</p>
+        </div>
+        <div>
+          <h3 data-i18n>Explore</h3>
+          <a href="about.html" data-i18n>About</a>
+          <a href="programs.html" data-i18n>Programs</a>
+          <a href="impact.html" data-i18n>Impact</a>
+          <a href="blog.html" data-i18n>Blog</a>
+        </div>
+        <div>
+          <h3 data-i18n>Get involved</h3>
+          <a href="volunteer.html" data-i18n>Volunteer</a>
+          <a href="donate.html" data-i18n>Donate</a>
+          <a href="contact.html" data-i18n>Contact</a>
+        </div>
+        <div>
+          <h3 data-i18n>Newsletter</h3>
+          <form id="sub-form">
+            <label for="nl" data-i18n>Email</label>
+            <input id="nl" type="email" required autocomplete="email">
+            <p><button class="p" data-i18n>Subscribe</button></p>
+          </form>
+        </div>
+      </div>
+      <p class="mut">© 2026 Pwani Inclusive · Mombasa, Kenya</p>
+    </div>
+  </footer>
+
+  <!-- Pop-up message (toast) and Guide box. Both are filled in by JavaScript -->
+  <div id="toast" role="status" aria-live="polite"></div>
+  <div id="guide" role="dialog" aria-label="Guide" data-i18n-aria="Guide" hidden></div>
+
+  <!-- Scripts: order matters (see the notes at the top of app.js) -->
+  <script src="js/data.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/access.js"></script>
+  <script src="js/pages.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

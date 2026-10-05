@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Pwani Inclusive began in 2019 in Mombasa. Read our mission, vision and values.">
+  <title>About us · Pwani Inclusive</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- data-page tells the JavaScript which page this is -->
+<body data-page="about">
+
+  <!-- Accessibility: keyboard users press Tab once to jump past the menu -->
+  <a class="skip" href="#app" data-i18n>Skip to content</a>
+  <noscript><p class="noscript">Please turn on JavaScript to use this site.</p></noscript>
+
+  <!-- ============ HEADER: logo, menu, accessibility tools (same on every page) ============ -->
+  <header>
+    <div class="bar">
+      <a class="logo" href="index.html"><span aria-hidden="true">♿</span> Pwani <b>Inclusive</b></a>
+
+      <nav id="nav" aria-label="Main" data-i18n-aria="Main">
+        <a href="index.html" data-i18n>Home</a>
+        <a href="about.html" class="on" aria-current="page" data-i18n>About</a>
+        <a href="programs.html" data-i18n>Programs</a>
+        <a href="impact.html" data-i18n>Impact</a>
+        <a href="blog.html" data-i18n>Blog</a>
+        <a href="volunteer.html" data-i18n>Volunteer</a>
+        <a href="donate.html" data-i18n>Donate</a>
+        <a href="contact.html" data-i18n>Contact</a>
+        <a href="admin.html" data-i18n>Admin</a>
+      </nav>
+
+      <!-- Each button names its job in data-action; app.js runs the matching function -->
+      <div class="tools" role="toolbar" aria-label="Accessibility tools" data-i18n-aria="Accessibility tools">
+        <button data-action="lang" aria-label="Switch language English Swahili" data-i18n-aria="Switch language English Swahili">SW</button>
+        <button id="btn-read" data-action="read"><span aria-hidden="true">🔊</span> <span data-i18n>Read</span></button>
+        <button data-action="voice" aria-pressed="false" data-i18n>Voice</button>
+        <button data-action="guide"><span aria-hidden="true">❓</span> <span data-i18n>Guide</span></button>
+        <button data-action="bigger" aria-label="Bigger text" data-i18n-aria="Bigger text">A+</button>
+        <button data-action="smaller" aria-label="Smaller text" data-i18n-aria="Smaller text">A−</button>
+        <button data-action="contrast" aria-label="High contrast" data-i18n-aria="High contrast">◐</button>
+        <button data-action="theme" aria-label="Dark mode" data-i18n-aria="Dark mode">☾</button>
+        <button id="menu" data-action="menu" aria-label="Menu" data-i18n-aria="Menu" aria-expanded="false" aria-controls="nav">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ MAIN: the part that changes on each page ============ -->
+  <main id="app" tabindex="-1">
+    <h1 data-i18n>About us</h1>
+
+    <section class="hero">
+      <div>
+        <p class="lead" data-i18n>Pwani Inclusive began in 2019 when physiotherapists, teachers and people living with disabilities in Mombasa decided talent should never be limited by access.</p>
+        <h2 data-i18n>Mission</h2>
+        <p data-i18n>To advance the wellness, dignity and economic growth of persons with disabilities on the Kenyan coast.</p>
+        <h2 data-i18n>Vision</h2>
+        <p data-i18n>A Mombasa where every street, workplace and classroom is open to all.</p>
+      </div>
+      <img class="img" src="images/community.jpeg" alt="Diverse community group" data-fallback="Community">
+    </section>
+
+    <section>
+      <h2 data-i18n>Our values</h2>
+      <div class="grid">
+        <div class="card"><h3 data-i18n>Nothing about us without us</h3><p class="mut" data-i18n>People with disabilities lead our programs.</p></div>
+        <div class="card"><h3 data-i18n>Dignity</h3><p class="mut" data-i18n>Support that builds independence.</p></div>
+        <div class="card"><h3 data-i18n>Transparency</h3><p class="mut" data-i18n>Open books and public impact reports.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER (same on every page) ============ -->
+  <footer>
+    <div class="in">
+      <div class="grid">
+        <div>
+          <h3>Pwani Inclusive</h3>
+          <p class="mut" data-i18n>Wellness, skills and opportunity for persons with disabilities in Mombasa. Demo site, sample data.</p>
+        </div>
+        <div>
+          <h3 data-i18n>Explore</h3>
+          <a href="about.html" data-i18n>About</a>
+          <a href="programs.html" data-i18n>Programs</a>
+          <a href="impact.html" data-i18n>Impact</a>
+          <a href="blog.html" data-i18n>Blog</a>
+        </div>
+        <div>
+          <h3 data-i18n>Get involved</h3>
+          <a href="volunteer.html" data-i18n>Volunteer</a>
+          <a href="donate.html" data-i18n>Donate</a>
+          <a href="contact.html" data-i18n>Contact</a>
+        </div>
+        <div>
+          <h3 data-i18n>Newsletter</h3>
+          <form id="sub-form">
+            <label for="nl" data-i18n>Email</label>
+            <input id="nl" type="email" required autocomplete="email">
+            <p><button class="p" data-i18n>Subscribe</button></p>
+          </form>
+        </div>
+      </div>
+      <p class="mut">© 2026 Pwani Inclusive · Mombasa, Kenya</p>
+    </div>
+  </footer>
+
+  <!-- Pop-up message (toast) and Guide box. Both are filled in by JavaScript -->
+  <div id="toast" role="status" aria-live="polite"></div>
+  <div id="guide" role="dialog" aria-label="Guide" data-i18n-aria="Guide" hidden></div>
+
+  <!-- Scripts: order matters (see the notes at the top of app.js) -->
+  <script src="js/data.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/access.js"></script>
+  <script src="js/pages.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

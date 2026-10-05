@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Manage posts, volunteers, donations and messages (demo).">
+  <title>Admin · Pwani Inclusive</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- data-page tells the JavaScript which page this is -->
+<body data-page="admin">
+
+  <!-- Accessibility: keyboard users press Tab once to jump past the menu -->
+  <a class="skip" href="#app" data-i18n>Skip to content</a>
+  <noscript><p class="noscript">Please turn on JavaScript to use this site.</p></noscript>
+
+  <!-- ============ HEADER: logo, menu, accessibility tools (same on every page) ============ -->
+  <header>
+    <div class="bar">
+      <a class="logo" href="index.html"><span aria-hidden="true">♿</span> Pwani <b>Inclusive</b></a>
+
+      <nav id="nav" aria-label="Main" data-i18n-aria="Main">
+        <a href="index.html" data-i18n>Home</a>
+        <a href="about.html" data-i18n>About</a>
+        <a href="programs.html" data-i18n>Programs</a>
+        <a href="impact.html" data-i18n>Impact</a>
+        <a href="blog.html" data-i18n>Blog</a>
+        <a href="volunteer.html" data-i18n>Volunteer</a>
+        <a href="donate.html" data-i18n>Donate</a>
+        <a href="contact.html" data-i18n>Contact</a>
+        <a href="admin.html" class="on" aria-current="page" data-i18n>Admin</a>
+      </nav>
+
+      <!-- Each button names its job in data-action; app.js runs the matching function -->
+      <div class="tools" role="toolbar" aria-label="Accessibility tools" data-i18n-aria="Accessibility tools">
+        <button data-action="lang" aria-label="Switch language English Swahili" data-i18n-aria="Switch language English Swahili">SW</button>
+        <button id="btn-read" data-action="read"><span aria-hidden="true">🔊</span> <span data-i18n>Read</span></button>
+        <button data-action="voice" aria-pressed="false" data-i18n>Voice</button>
+        <button data-action="guide"><span aria-hidden="true">❓</span> <span data-i18n>Guide</span></button>
+        <button data-action="bigger" aria-label="Bigger text" data-i18n-aria="Bigger text">A+</button>
+        <button data-action="smaller" aria-label="Smaller text" data-i18n-aria="Smaller text">A−</button>
+        <button data-action="contrast" aria-label="High contrast" data-i18n-aria="High contrast">◐</button>
+        <button data-action="theme" aria-label="Dark mode" data-i18n-aria="Dark mode">☾</button>
+        <button id="menu" data-action="menu" aria-label="Menu" data-i18n-aria="Menu" aria-expanded="false" aria-controls="nav">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ MAIN: the part that changes on each page ============ -->
+  <main id="app" tabindex="-1">
+    <h1 data-i18n>Admin</h1>
+
+    <!-- A. Sign-in form (shown when logged out) -->
+    <section id="admin-login">
+      <form id="login-form" class="card narrow">
+        <label for="pw" data-i18n>Password</label>
+        <input id="pw" type="password" required autocomplete="current-password">
+        <p><button class="p" data-i18n>Sign in</button></p>
+        <p class="mut" data-i18n>Demo password: admin123</p>
+      </form>
+    </section>
+
+    <!-- B. Dashboard (shown when logged in). Tabs show one panel at a time. -->
+    <section id="admin-panel" hidden>
+      <div class="row gap-b">
+        <button data-action="tab" data-tab="overview" aria-pressed="false" data-i18n>Overview</button>
+        <button data-action="tab" data-tab="posts" aria-pressed="false" data-i18n>Posts</button>
+        <button data-action="tab" data-tab="volunteers" aria-pressed="false" data-i18n>Volunteers</button>
+        <button data-action="tab" data-tab="donations" aria-pressed="false" data-i18n>Donations</button>
+        <button data-action="tab" data-tab="messages" aria-pressed="false" data-i18n>Messages</button>
+        <button data-action="tab" data-tab="settings" aria-pressed="false" data-i18n>Settings</button>
+      </div>
+
+      <div class="tabpanel" id="tab-overview">
+        <div class="grid">
+          <div class="card"><div class="stat" id="st-raised"></div><div class="mut" data-i18n>raised</div></div>
+          <div class="card"><div class="stat" id="st-don"></div><div class="mut" data-i18n>donations</div></div>
+          <div class="card"><div class="stat" id="st-vol"></div><div class="mut" data-i18n>volunteers</div></div>
+          <div class="card"><div class="stat" id="st-posts"></div><div class="mut" data-i18n>posts</div></div>
+          <div class="card"><div class="stat" id="st-msg"></div><div class="mut" data-i18n>messages</div></div>
+          <div class="card"><div class="stat" id="st-sub"></div><div class="mut" data-i18n>subscribers</div></div>
+        </div>
+      </div>
+
+      <div class="tabpanel" id="tab-posts" hidden>
+        <form id="post-form" class="card">
+          <label for="pt" data-i18n>Title</label>
+          <input id="pt" type="text" required>
+          <label for="pc" data-i18n>Category</label>
+          <select id="pc">
+          <option value="Health" data-i18n>Health</option>
+          <option value="Skills" data-i18n>Skills</option>
+          <option value="Stories" data-i18n>Stories</option>
+          <option value="Business" data-i18n>Business</option>
+          <option value="Community" data-i18n>Community</option>
+          <option value="Culture" data-i18n>Culture</option>
+          </select>
+          <label for="px" data-i18n>Summary</label>
+          <input id="px" type="text" required>
+          <label for="pb" data-i18n>Body</label>
+          <textarea id="pb" rows="4" required></textarea>
+          <p><button class="p" data-i18n>Publish</button></p>
+        </form>
+        <div class="card tw mt"><table><tbody id="admin-posts"></tbody></table></div>
+      </div>
+
+      <div class="tabpanel" id="tab-volunteers" hidden>
+        <div class="card tw">
+          <table>
+            <thead><tr><th data-i18n>Name</th><th data-i18n>Role</th><th data-i18n>Sub-county</th><th data-i18n>Status</th><th></th></tr></thead>
+            <tbody id="admin-vols"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="tabpanel" id="tab-donations" hidden>
+        <div class="card tw"><table><tbody id="admin-dons"></tbody></table></div>
+      </div>
+
+      <div class="tabpanel" id="tab-messages" hidden>
+        <div id="admin-msgs" class="stack"></div>
+      </div>
+
+      <div class="tabpanel" id="tab-settings" hidden>
+        <div class="card">
+          <p><span data-i18n>Subscribers</span>: <span id="admin-subs"></span></p>
+          <div class="row">
+            <button class="d" data-action="reset" data-i18n>Reset demo data</button>
+            <button data-action="logout" data-i18n>Log out</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER (same on every page) ============ -->
+  <footer>
+    <div class="in">
+      <div class="grid">
+        <div>
+          <h3>Pwani Inclusive</h3>
+          <p class="mut" data-i18n>Wellness, skills and opportunity for persons with disabilities in Mombasa. Demo site, sample data.</p>
+        </div>
+        <div>
+          <h3 data-i18n>Explore</h3>
+          <a href="about.html" data-i18n>About</a>
+          <a href="programs.html" data-i18n>Programs</a>
+          <a href="impact.html" data-i18n>Impact</a>
+          <a href="blog.html" data-i18n>Blog</a>
+        </div>
+        <div>
+          <h3 data-i18n>Get involved</h3>
+          <a href="volunteer.html" data-i18n>Volunteer</a>
+          <a href="donate.html" data-i18n>Donate</a>
+          <a href="contact.html" data-i18n>Contact</a>
+        </div>
+        <div>
+          <h3 data-i18n>Newsletter</h3>
+          <form id="sub-form">
+            <label for="nl" data-i18n>Email</label>
+            <input id="nl" type="email" required autocomplete="email">
+            <p><button class="p" data-i18n>Subscribe</button></p>
+          </form>
+        </div>
+      </div>
+      <p class="mut">© 2026 Pwani Inclusive · Mombasa, Kenya</p>
+    </div>
+  </footer>
+
+  <!-- Pop-up message (toast) and Guide box. Both are filled in by JavaScript -->
+  <div id="toast" role="status" aria-live="polite"></div>
+  <div id="guide" role="dialog" aria-label="Guide" data-i18n-aria="Guide" hidden></div>
+
+  <!-- Scripts: order matters (see the notes at the top of app.js) -->
+  <script src="js/data.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/access.js"></script>
+  <script src="js/pages.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

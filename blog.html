@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Stories and news from Pwani Inclusive: health, skills, business, community and culture.">
+  <title>Blog · Pwani Inclusive</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- data-page tells the JavaScript which page this is -->
+<body data-page="blog">
+
+  <!-- Accessibility: keyboard users press Tab once to jump past the menu -->
+  <a class="skip" href="#app" data-i18n>Skip to content</a>
+  <noscript><p class="noscript">Please turn on JavaScript to use this site.</p></noscript>
+
+  <!-- ============ HEADER: logo, menu, accessibility tools (same on every page) ============ -->
+  <header>
+    <div class="bar">
+      <a class="logo" href="index.html"><span aria-hidden="true">♿</span> Pwani <b>Inclusive</b></a>
+
+      <nav id="nav" aria-label="Main" data-i18n-aria="Main">
+        <a href="index.html" data-i18n>Home</a>
+        <a href="about.html" data-i18n>About</a>
+        <a href="programs.html" data-i18n>Programs</a>
+        <a href="impact.html" data-i18n>Impact</a>
+        <a href="blog.html" class="on" aria-current="page" data-i18n>Blog</a>
+        <a href="volunteer.html" data-i18n>Volunteer</a>
+        <a href="donate.html" data-i18n>Donate</a>
+        <a href="contact.html" data-i18n>Contact</a>
+        <a href="admin.html" data-i18n>Admin</a>
+      </nav>
+
+      <!-- Each button names its job in data-action; app.js runs the matching function -->
+      <div class="tools" role="toolbar" aria-label="Accessibility tools" data-i18n-aria="Accessibility tools">
+        <button data-action="lang" aria-label="Switch language English Swahili" data-i18n-aria="Switch language English Swahili">SW</button>
+        <button id="btn-read" data-action="read"><span aria-hidden="true">🔊</span> <span data-i18n>Read</span></button>
+        <button data-action="voice" aria-pressed="false" data-i18n>Voice</button>
+        <button data-action="guide"><span aria-hidden="true">❓</span> <span data-i18n>Guide</span></button>
+        <button data-action="bigger" aria-label="Bigger text" data-i18n-aria="Bigger text">A+</button>
+        <button data-action="smaller" aria-label="Smaller text" data-i18n-aria="Smaller text">A−</button>
+        <button data-action="contrast" aria-label="High contrast" data-i18n-aria="High contrast">◐</button>
+        <button data-action="theme" aria-label="Dark mode" data-i18n-aria="Dark mode">☾</button>
+        <button id="menu" data-action="menu" aria-label="Menu" data-i18n-aria="Menu" aria-expanded="false" aria-controls="nav">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ MAIN: the part that changes on each page ============ -->
+  <main id="app" tabindex="-1">
+    <h1 data-i18n>Blog</h1>
+
+    <!-- Search box and category buttons. They filter the list below (see PAGES.blog in js/pages.js) -->
+    <div class="row">
+      <input id="blog-search" type="search" style="max-width:300px" placeholder="Search posts…" aria-label="Search posts…"
+             data-i18n-ph="Search posts…" data-i18n-aria="Search posts…">
+        <button data-action="cat" data-cat="All" aria-pressed="true" class="on" data-i18n>All</button>
+        <button data-action="cat" data-cat="Health" aria-pressed="false" data-i18n>Health</button>
+        <button data-action="cat" data-cat="Skills" aria-pressed="false" data-i18n>Skills</button>
+        <button data-action="cat" data-cat="Stories" aria-pressed="false" data-i18n>Stories</button>
+        <button data-action="cat" data-cat="Business" aria-pressed="false" data-i18n>Business</button>
+        <button data-action="cat" data-cat="Community" aria-pressed="false" data-i18n>Community</button>
+        <button data-action="cat" data-cat="Culture" aria-pressed="false" data-i18n>Culture</button>
+    </div>
+
+    <div id="blog-list" class="grid mt" aria-live="polite"></div>
+  </main>
+
+  <!-- ============ FOOTER (same on every page) ============ -->
+  <footer>
+    <div class="in">
+      <div class="grid">
+        <div>
+          <h3>Pwani Inclusive</h3>
+          <p class="mut" data-i18n>Wellness, skills and opportunity for persons with disabilities in Mombasa. Demo site, sample data.</p>
+        </div>
+        <div>
+          <h3 data-i18n>Explore</h3>
+          <a href="about.html" data-i18n>About</a>
+          <a href="programs.html" data-i18n>Programs</a>
+          <a href="impact.html" data-i18n>Impact</a>
+          <a href="blog.html" data-i18n>Blog</a>
+        </div>
+        <div>
+          <h3 data-i18n>Get involved</h3>
+          <a href="volunteer.html" data-i18n>Volunteer</a>
+          <a href="donate.html" data-i18n>Donate</a>
+          <a href="contact.html" data-i18n>Contact</a>
+        </div>
+        <div>
+          <h3 data-i18n>Newsletter</h3>
+          <form id="sub-form">
+            <label for="nl" data-i18n>Email</label>
+            <input id="nl" type="email" required autocomplete="email">
+            <p><button class="p" data-i18n>Subscribe</button></p>
+          </form>
+        </div>
+      </div>
+      <p class="mut">© 2026 Pwani Inclusive · Mombasa, Kenya</p>
+    </div>
+  </footer>
+
+  <!-- Pop-up message (toast) and Guide box. Both are filled in by JavaScript -->
+  <div id="toast" role="status" aria-live="polite"></div>
+  <div id="guide" role="dialog" aria-label="Guide" data-i18n-aria="Guide" hidden></div>
+
+  <!-- Scripts: order matters (see the notes at the top of app.js) -->
+  <script src="js/data.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/access.js"></script>
+  <script src="js/pages.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

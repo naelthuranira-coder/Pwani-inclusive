@@ -1,0 +1,116 @@
+/* ==========================================================
+   style.css  -  one stylesheet for all pages
+   1. colours & themes   2. base   3. header & menu   4. buttons
+   5. layout blocks      6. forms  7. tables & charts 8. footer, toast, guide
+   ========================================================== */
+
+/* ---------- 1. Colours & themes ----------
+   Every colour is a variable, so dark mode and high contrast
+   only have to change these few lines. */
+:root {
+  --bg: #f7fafb;  --fg: #13262f;  --mut: #51666f;           /* page, text, quiet text  */
+  --card: #fff;   --pri: #0b7a75; --on: #fff;               /* cards, main colour, text on main colour */
+  --acc: #f2a33a; --bd: #dbe5e8;                            /* accent (focus), borders */
+}
+/* Dark: follows the phone/computer setting unless the visitor chose light */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1a1f; --fg: #e7f1f3; --mut: #9fb4bb; --card: #14262d; --pri: #35c2b8; --on: #06201e; --bd: #26404a;
+  }
+}
+:root[data-theme="dark"] { --bg: #0d1a1f; --fg: #e7f1f3; --mut: #9fb4bb; --card: #14262d; --pri: #35c2b8; --on: #06201e; --bd: #26404a; }
+/* High contrast: black, white and yellow only */
+:root[data-hc="1"] { --bg: #000; --fg: #fff; --mut: #fff; --card: #000; --pri: #ffe600; --on: #000; --bd: #fff; }
+
+/* ---------- 2. Base ---------- */
+html { font-size: var(--fs, 100%); }                        /* A+ / A- change --fs */
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }                      /* makes the hidden attribute always win */
+body { margin: 0; background: var(--bg); color: var(--fg);
+       font: 1rem/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+a { color: var(--pri); }
+img { max-width: 100%; display: block; }
+h1 { font-size: clamp(1.9rem, 5vw, 3rem); line-height: 1.15; margin: .2em 0; }
+h2 { font-size: 1.6rem; margin: 1.5em 0 .5em; }
+h3 { margin: .2em 0; }
+main { max-width: 1100px; margin: auto; padding: 24px 16px 48px; outline: 0; }
+:focus-visible { outline: 3px solid var(--acc); outline-offset: 2px; }   /* clear keyboard focus ring */
+.skip { position: absolute; left: -999px; }                              /* "Skip to content" appears on Tab */
+.skip:focus { left: 8px; top: 8px; background: var(--acc); color: #000; padding: 8px; z-index: 99; }
+.mut { color: var(--mut); }
+.noscript { background: var(--acc); color: #000; padding: 12px; text-align: center; font-weight: 700; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+
+/* ---------- 3. Header, menu, accessibility tools ---------- */
+header { position: sticky; top: 0; background: var(--card); border-bottom: 1px solid var(--bd); z-index: 10; }
+.bar { max-width: 1100px; margin: auto; display: flex; align-items: center; gap: 10px; padding: 8px 16px; flex-wrap: wrap; }
+.logo { font-weight: 800; font-size: 1.15rem; text-decoration: none; color: var(--fg); margin-right: auto; }
+.logo b { color: var(--pri); }
+nav { display: flex; gap: 2px; flex-wrap: wrap; }
+nav a { padding: 8px 11px; border-radius: 8px; text-decoration: none; color: var(--fg); font-weight: 600; }
+nav a.on, nav a:hover { background: var(--pri); color: var(--on); }
+.tools { display: flex; gap: 6px; flex-wrap: wrap; }
+.tools button { padding: 6px 10px; }
+#menu { display: none; }
+@media (max-width: 860px) {                                 /* phone: menu button appears, links fold away */
+  #menu { display: inline-block; }
+  nav { display: none; width: 100%; flex-direction: column; }
+  nav.open { display: flex; }
+}
+
+/* ---------- 4. Buttons ---------- */
+button, .btn { font: inherit; font-weight: 700; border: 2px solid var(--pri); background: var(--card); color: var(--pri);
+               border-radius: 10px; padding: 8px 14px; cursor: pointer; text-decoration: none; display: inline-block; }
+.btn.p, button.p, button.on { background: var(--pri); color: var(--on); }     /* p = primary, on = selected */
+button.d { border-color: #c0392b; color: #c0392b; }                             /* d = danger (delete) */
+button:disabled { opacity: .5; cursor: not-allowed; }
+
+/* ---------- 5. Layout blocks ---------- */
+.hero { display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; align-items: center; padding: 12px 0 28px; }
+@media (max-width: 800px) { .hero { grid-template-columns: 1fr; } }
+.lead { font-size: 1.15rem; color: var(--mut); }
+.img { border-radius: 14px; width: 100%; aspect-ratio: 3/2; object-fit: cover; background: var(--bd); }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+.card { background: var(--card); border: 1px solid var(--bd); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+.tag { font-size: .8rem; font-weight: 700; color: var(--pri); text-transform: uppercase; }
+.stat { font-size: 2.2rem; font-weight: 800; color: var(--pri); }
+.band { background: var(--pri); color: var(--on); border-radius: 16px; padding: 24px; margin: 30px 0; }
+.band .btn { background: var(--on); color: var(--pri); border-color: var(--on); }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.prog { height: 16px; background: var(--bd); border-radius: 99px; overflow: hidden; }       /* progress bar track */
+.prog i { display: block; height: 100%; background: var(--acc); }                             /* ...and its fill */
+
+/* ---------- 6. Forms ---------- */
+label { display: block; font-weight: 600; margin: 10px 0 4px; }
+input, select, textarea { width: 100%; font: inherit; padding: 10px; border: 2px solid var(--bd); border-radius: 10px; background: var(--card); color: var(--fg); }
+input[type=checkbox] { width: auto; }
+fieldset { border: 1px solid var(--bd); border-radius: 10px; margin: 10px 0; }
+legend { font-weight: 600; padding: 0 6px; }
+.ck label { display: inline-flex; gap: 6px; align-items: center; font-weight: 500; margin: 4px 12px 4px 0; }
+
+/* ---------- 7. Tables & bar chart ---------- */
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--bd); }
+.tw { overflow-x: auto; }                                   /* wide tables scroll sideways on phones */
+.bars { display: flex; align-items: flex-end; gap: 12px; height: 180px; margin-bottom: 28px; }
+.bars div { flex: 1; background: var(--pri); border-radius: 8px 8px 0 0; position: relative; }
+.bars span { position: absolute; top: -22px; width: 100%; text-align: center; font-size: .8rem; font-weight: 700; }
+.bars em { position: absolute; bottom: -22px; width: 100%; text-align: center; font-size: .8rem; font-style: normal; }
+.stack > * + * { margin-top: 12px; }                        /* spacing between admin message cards */
+
+/* ---------- 8. Footer, toast message, guide box ---------- */
+footer { background: var(--card); border-top: 1px solid var(--bd); padding: 28px 16px; }
+footer .in { max-width: 1100px; margin: auto; }
+footer a { display: block; padding: 2px 0; }
+#toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); background: var(--fg); color: var(--bg);
+         padding: 12px 18px; border-radius: 10px; font-weight: 700; opacity: 0; pointer-events: none; transition: .3s; z-index: 50; }
+#toast.show { opacity: 1; }
+#guide { position: fixed; left: 8px; right: 8px; bottom: 8px; max-width: 640px; margin: auto; background: var(--card);
+         border: 3px solid var(--acc); border-radius: 16px; padding: 14px; z-index: 40; box-shadow: 0 8px 30px #0005; }
+.hl { outline: 4px solid var(--acc); outline-offset: 4px; }  /* highlight added by the Guide */
+
+/* ---------- small helpers used in the HTML ---------- */
+.band h2 { margin-top: 0; }
+.narrow { max-width: 380px; }
+.gap-b { margin-bottom: 14px; }
+.mt { margin-top: 14px; }

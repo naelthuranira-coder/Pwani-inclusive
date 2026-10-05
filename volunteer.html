@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Give a few hours and change a life. Apply to volunteer with Pwani Inclusive in Mombasa.">
+  <title>Volunteer · Pwani Inclusive</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- data-page tells the JavaScript which page this is -->
+<body data-page="volunteer">
+
+  <!-- Accessibility: keyboard users press Tab once to jump past the menu -->
+  <a class="skip" href="#app" data-i18n>Skip to content</a>
+  <noscript><p class="noscript">Please turn on JavaScript to use this site.</p></noscript>
+
+  <!-- ============ HEADER: logo, menu, accessibility tools (same on every page) ============ -->
+  <header>
+    <div class="bar">
+      <a class="logo" href="index.html"><span aria-hidden="true">♿</span> Pwani <b>Inclusive</b></a>
+
+      <nav id="nav" aria-label="Main" data-i18n-aria="Main">
+        <a href="index.html" data-i18n>Home</a>
+        <a href="about.html" data-i18n>About</a>
+        <a href="programs.html" data-i18n>Programs</a>
+        <a href="impact.html" data-i18n>Impact</a>
+        <a href="blog.html" data-i18n>Blog</a>
+        <a href="volunteer.html" class="on" aria-current="page" data-i18n>Volunteer</a>
+        <a href="donate.html" data-i18n>Donate</a>
+        <a href="contact.html" data-i18n>Contact</a>
+        <a href="admin.html" data-i18n>Admin</a>
+      </nav>
+
+      <!-- Each button names its job in data-action; app.js runs the matching function -->
+      <div class="tools" role="toolbar" aria-label="Accessibility tools" data-i18n-aria="Accessibility tools">
+        <button data-action="lang" aria-label="Switch language English Swahili" data-i18n-aria="Switch language English Swahili">SW</button>
+        <button id="btn-read" data-action="read"><span aria-hidden="true">🔊</span> <span data-i18n>Read</span></button>
+        <button data-action="voice" aria-pressed="false" data-i18n>Voice</button>
+        <button data-action="guide"><span aria-hidden="true">❓</span> <span data-i18n>Guide</span></button>
+        <button data-action="bigger" aria-label="Bigger text" data-i18n-aria="Bigger text">A+</button>
+        <button data-action="smaller" aria-label="Smaller text" data-i18n-aria="Smaller text">A−</button>
+        <button data-action="contrast" aria-label="High contrast" data-i18n-aria="High contrast">◐</button>
+        <button data-action="theme" aria-label="Dark mode" data-i18n-aria="Dark mode">☾</button>
+        <button id="menu" data-action="menu" aria-label="Menu" data-i18n-aria="Menu" aria-expanded="false" aria-controls="nav">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ MAIN: the part that changes on each page ============ -->
+  <main id="app" tabindex="-1">
+    <h1 data-i18n>Volunteer</h1>
+
+    <section class="hero">
+      <div>
+        <p class="lead" data-i18n>Give a few hours, change a life. Choose a role below, or apply directly.</p>
+        <h2 data-i18n>Volunteer roles</h2>
+        <!-- Clicking a role fills the "Role" box in the form -->
+        <div class="row">
+          <button type="button" data-action="pick-role" data-role="Peer coach" data-i18n>Peer coach</button>
+          <button type="button" data-action="pick-role" data-role="Sign-language interpreter" data-i18n>Sign-language interpreter</button>
+          <button type="button" data-action="pick-role" data-role="Driver / escort" data-i18n>Driver / escort</button>
+          <button type="button" data-action="pick-role" data-role="Skills trainer" data-i18n>Skills trainer</button>
+          <button type="button" data-action="pick-role" data-role="Fundraiser" data-i18n>Fundraiser</button>
+          <button type="button" data-action="pick-role" data-role="Beach access mapper" data-i18n>Beach access mapper</button>
+        </div>
+      </div>
+      <img class="img" src="images/volunteer.jpeg" alt="Volunteers working together" data-fallback="Volunteer">
+    </section>
+
+    <!-- Application form. On submit, js/pages.js saves it and the admin can approve it. -->
+    <form id="vol-form" class="card">
+      <label for="vn" data-i18n>Name</label>
+      <input id="vn" type="text" required minlength="2" autocomplete="name">
+
+      <label for="ve" data-i18n>Email</label>
+      <input id="ve" type="email" required autocomplete="email">
+
+      <label for="vp" data-i18n>Phone</label>
+      <input id="vp" type="tel" required pattern="[0-9+ ]{9,15}" title="Digits only, for example 0712 345 678" autocomplete="tel">
+
+      <label for="vr" data-i18n>Role</label>
+      <select id="vr">
+          <option value="Peer coach" data-i18n>Peer coach</option>
+          <option value="Sign-language interpreter" data-i18n>Sign-language interpreter</option>
+          <option value="Driver / escort" data-i18n>Driver / escort</option>
+          <option value="Skills trainer" data-i18n>Skills trainer</option>
+          <option value="Fundraiser" data-i18n>Fundraiser</option>
+          <option value="Beach access mapper" data-i18n>Beach access mapper</option>
+      </select>
+
+      <label for="vs" data-i18n>Sub-county</label>
+      <select id="vs">
+          <option>Changamwe</option>
+          <option>Jomvu</option>
+          <option>Kisauni</option>
+          <option>Nyali</option>
+          <option>Likoni</option>
+          <option>Mvita</option>
+      </select>
+
+      <fieldset class="ck">
+        <legend data-i18n>Skills</legend>
+          <label><input type="checkbox" name="k" value="Fitness"><span data-i18n>Fitness</span></label>
+          <label><input type="checkbox" name="k" value="Sign language"><span data-i18n>Sign language</span></label>
+          <label><input type="checkbox" name="k" value="Driving"><span data-i18n>Driving</span></label>
+          <label><input type="checkbox" name="k" value="Teaching"><span data-i18n>Teaching</span></label>
+          <label><input type="checkbox" name="k" value="ICT"><span data-i18n>ICT</span></label>
+          <label><input type="checkbox" name="k" value="Fundraising"><span data-i18n>Fundraising</span></label>
+          <label><input type="checkbox" name="k" value="Counselling"><span data-i18n>Counselling</span></label>
+          <label><input type="checkbox" name="k" value="Photography"><span data-i18n>Photography</span></label>
+      </fieldset>
+
+      <fieldset class="ck">
+        <legend data-i18n>Availability</legend>
+          <label><input type="checkbox" name="a" value="Weekdays"><span data-i18n>Weekdays</span></label>
+          <label><input type="checkbox" name="a" value="Weekends"><span data-i18n>Weekends</span></label>
+          <label><input type="checkbox" name="a" value="Evenings"><span data-i18n>Evenings</span></label>
+      </fieldset>
+
+      <label for="vw" data-i18n>Why do you want to volunteer?</label>
+      <textarea id="vw" rows="3" required></textarea>
+
+      <p><button class="p" data-i18n>Submit application</button></p>
+    </form>
+  </main>
+
+  <!-- ============ FOOTER (same on every page) ============ -->
+  <footer>
+    <div class="in">
+      <div class="grid">
+        <div>
+          <h3>Pwani Inclusive</h3>
+          <p class="mut" data-i18n>Wellness, skills and opportunity for persons with disabilities in Mombasa. Demo site, sample data.</p>
+        </div>
+        <div>
+          <h3 data-i18n>Explore</h3>
+          <a href="about.html" data-i18n>About</a>
+          <a href="programs.html" data-i18n>Programs</a>
+          <a href="impact.html" data-i18n>Impact</a>
+          <a href="blog.html" data-i18n>Blog</a>
+        </div>
+        <div>
+          <h3 data-i18n>Get involved</h3>
+          <a href="volunteer.html" data-i18n>Volunteer</a>
+          <a href="donate.html" data-i18n>Donate</a>
+          <a href="contact.html" data-i18n>Contact</a>
+        </div>
+        <div>
+          <h3 data-i18n>Newsletter</h3>
+          <form id="sub-form">
+            <label for="nl" data-i18n>Email</label>
+            <input id="nl" type="email" required autocomplete="email">
+            <p><button class="p" data-i18n>Subscribe</button></p>
+          </form>
+        </div>
+      </div>
+      <p class="mut">© 2026 Pwani Inclusive · Mombasa, Kenya</p>
+    </div>
+  </footer>
+
+  <!-- Pop-up message (toast) and Guide box. Both are filled in by JavaScript -->
+  <div id="toast" role="status" aria-live="polite"></div>
+  <div id="guide" role="dialog" aria-label="Guide" data-i18n-aria="Guide" hidden></div>
+
+  <!-- Scripts: order matters (see the notes at the top of app.js) -->
+  <script src="js/data.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/access.js"></script>
+  <script src="js/pages.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
